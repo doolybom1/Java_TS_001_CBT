@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.biz.cbt.dao.CbtDao">
+ 
+ 	<select id="selectAll" resultType="CbtDTO">
+ 		SELECT * FROM tbl_cbt
+ 	</select>
+
+ 	<select id="getMaxSeq" resultType="String">
+ 		SELECT MAX(cb_seq) FROM tbl_cbt
+ 	</select>
+ 	
+ 	<select id="findBySeq" resultType="CbtDTO">
+ 		SELECT * FROM tbl_cbt
+ 		WHERE CB_SEQ = #{cb_seq}
+ 	</select>
+ 	
+ 	
+ 	<insert id="insert" parameterType="CbtDTO">
+ 		INSERT INTO tbl_cbt(
+			CB_SEQ,
+			CB_QUE,
+			CB_AN1,
+			CB_AN2,
+			CB_AN3,
+			CB_AN4,
+			CB_ANQUE
+ 		) VALUES(
+ 			#{cb_seq,jdbcType=VARCHAR},
+			#{cb_que,jdbcType=VARCHAR},
+			#{cb_an1,jdbcType=VARCHAR},
+			#{cb_an2,jdbcType=VARCHAR},
+			#{cb_an3,jdbcType=VARCHAR},
+			#{cb_an4,jdbcType=VARCHAR},
+			#{cb_anque,jdbcType=VARCHAR}
+ 		)
+ 		
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="CbtDTO">
+ 		UPDATE tbl_cbt SET
+			CB_QUE = #{cb_que,jdbcType=VARCHAR},
+			CB_AN1 = #{cb_an1,jdbcType=VARCHAR},
+			CB_AN2 = #{cb_an2,jdbcType=VARCHAR},
+			CB_AN3 = #{cb_an3,jdbcType=VARCHAR},
+			CB_AN4 = #{cb_an4,jdbcType=VARCHAR},
+			CB_ANQUE = #{cb_anque,jdbcType=VARCHAR}
+ 		WHERE CB_SEQ = #{cb_seq}
+ 	
+ 	</update>
+ 	
+ 	<delete id="delete" parameterType="CbtDTO">
+ 		DELETE FROM tbl_cbt
+ 		WHERE CB_SEQ = #{cb_seq}
+ 	</delete>
+ 
+ </mapper> 
